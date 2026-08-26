@@ -1,0 +1,91 @@
+name,locality,cuisine,all_cuisines,price_for_two,rating,votes,restaurant_type,veg_only,distance_km
+Cup Chronicles Cafe,Indiranagar,Cafe,"Cafe, Continental, Tea, Beverages, Desserts",450,3.9,48,Cafe,True,3.7
+Fort Kochi,MG Road,Kerala,"Kerala, Seafood",1800,4.1,335,"Casual Dining, Bar",False,3.4
+Ambur Star Dum Biryani,Jayanagar,Biryani,Biryani,100,3.4,17,Quick Bites,False,8.9
+Bawarchi Biryani,Koramangala 6th Block,Biryani,"Biryani, South Indian",350,3.4,65,Quick Bites,False,8.1
+Savera Cafe,Shivajinagar,Cafe,Cafe,50,3.7,11,Cafe,True,7.2
+Rafees Biryani,Koramangala 5th Block,Biryani,"Biryani, North Indian, Desserts",600,3.7,28,"Takeaway, Delivery",False,0.8
+Dakshin - ITC Windsor,Sankey Road,South Indian,South Indian,4000,4.3,202,Fine Dining,False,9.7
+Berrylicious,JP Nagar,Ice Cream,"Ice Cream, Desserts, Bakery",400,3.8,89,Dessert Parlor,True,3.3
+Cocoa 'n' Crme,JP Nagar,Bakery,"Bakery, Desserts",250,3.5,11,Bakery,True,9.2
+Chillz,JP Nagar,Fast Food,"Fast Food, Juices, Street Food",100,3.5,9,Quick Bites,True,10.7
+Biggies Burger 'n' More,Electronic City,Cafe,"Cafe, Burger, Beverages",650,3.9,176,Quick Bites,False,2.8
+Swathi,Rajajinagar,Andhra,"Andhra, North Indian, Chinese",700,3.8,591,Casual Dining,False,4.1
+Chaska Box,Sarjapur Road,Bakery,"Bakery, Desserts",1400,3.3,4,"Takeaway, Delivery",True,10.6
+Mumbai Kulfi,HSR,Ice Cream,Ice Cream,100,4.0,92,Dessert Parlor,True,10.3
+Cake Yard,Koramangala 7th Block,Desserts,Desserts,250,2.9,30,Dessert Parlor,True,8.1
+Chettayees,BTM,Kerala,"Kerala, North Indian, Chinese",400,3.4,147,Quick Bites,False,7.1
+Aapni Rasoi,Bellandur,North Indian,North Indian,400,3.2,127,Quick Bites,True,2.0
+The Lobby Brew - Conrad Bengaluru,Ulsoor,Cafe,"Cafe, North Indian, Fast Food",2200,3.8,25,Cafe,True,2.6
+Lobby Cafe - Radha Regent,Electronic City,Continental,"Continental, American, South Indian, Italian, North Indian, Chinese",1200,3.7,177,Casual Dining,False,10.7
+Royal Afghan - ITC Windsor,Sankey Road,North Indian,"North Indian, Mughlai",5000,4.3,413,Fine Dining,False,5.1
+Keventers,Basaveshwara Nagar,Beverages,"Beverages, Desserts, Ice Cream",400,3.7,39,"Beverage Shop, Dessert Parlor",True,2.5
+Domino's Pizza,Rajajinagar,Pizza,"Pizza, Fast Food",400,3.9,392,Quick Bites,True,3.7
+Asha Sweets Centre,Basavanagudi,Fast Food,Fast Food,250,3.6,27,Dessert Parlor,True,6.7
+Shaken & Stirred,Race Course Road,Continental,"Continental, North Indian, Chinese",1500,3.9,84,"Bar, Casual Dining",False,2.9
+WOW! Momo,Marathahalli,Chinese,"Chinese, Momos",400,3.5,79,Quick Bites,False,5.1
+Momoz,Koramangala 5th Block,Chinese,"Chinese, Momos",600,3.9,625,Casual Dining,False,7.0
+Kitchen Aroma,Whitefield,Desserts,Desserts,400,3.4,7,Takeaway,True,3.9
+Lassi Magic,BTM,Beverages,"Beverages, Sandwich",150,3.5,12,Beverage Shop,True,4.6
+Panther Cafe,BTM,Beverages,Beverages,200,3.5,8,Beverage Shop,True,9.7
+Smoke-A-Pot,Koramangala 5th Block,Biryani,"Biryani, Kebab, Rolls",500,3.3,10,"Takeaway, Delivery",False,2.2
+Cake Palace,Indiranagar,Bakery,Bakery,100,3.4,11,Dessert Parlor,True,1.3
+Amma's Cafe,HSR,Fast Food,Fast Food,300,3.2,6,Quick Bites,True,2.7
+Cakesta,"ITPL Main Road, Whitefield",Bakery,"Bakery, Desserts",500,4.1,119,Bakery,False,8.5
+Nellore Dosa Camp,BTM,Andhra,"Andhra, South Indian",70,3.3,5,Quick Bites,True,8.7
+Street Foods by Punjab Grill,Bannerghatta Road,Street Food,"Street Food, North Indian, Beverages",800,3.6,19,Food Court,False,10.8
+Nandanam Family Restaurant,BTM,Kerala,"Kerala, Chinese, South Indian",350,3.6,18,Quick Bites,True,11.3
+Chef Baker's,HSR,Continental,"Continental, Cafe, Desserts, Italian, Bakery",600,3.9,204,"Bakery, Cafe",False,9.0
+Kamat Restaurant,City Market,South Indian,"South Indian, North Indian, Chinese, Desserts, Juices",400,3.6,31,Casual Dining,True,11.7
+Smoke - The Sizzler House,Bellandur,Continental,"Continental, Chinese, Thai, BBQ, Steak",900,3.3,4,Casual Dining,False,1.6
+Svadu Sweets & Savouries,BTM,Street Food,"Street Food, Mithai",200,3.7,26,"Quick Bites, Sweet Shop",True,4.1
+China Down Town,Koramangala 4th Block,Chinese,Chinese,800,3.5,5,Casual Dining,True,1.6
+The Lantern Restaurant & Bar - The Ritz-Carlton...,Residency Road,Chinese,Chinese,3500,4.4,424,"Fine Dining, Bar",False,11.1
+Tandoor-De-Naal,BTM,Fast Food,Fast Food,200,3.8,35,"Takeaway, Delivery",False,9.3
+Urban Solace - Caf for the Soul,Ulsoor,Cafe,"Cafe, American, Continental, Steak",800,3.9,464,"Cafe, Casual Dining",False,9.9
+Delite Chaat House,Koramangala 6th Block,Street Food,"Street Food, Gujarati",300,3.9,498,Quick Bites,True,11.2
+Paratha Merchant,Kumaraswamy Layout,North Indian,North Indian,300,3.1,39,Quick Bites,True,7.9
+Freeze It,Jayanagar,Ice Cream,Ice Cream,300,3.5,35,Dessert Parlor,True,11.6
+Pizza Mane,Banashankari,Pizza,"Pizza, Sandwich, Burger, Fast Food",150,3.5,32,Quick Bites,True,4.2
+NEW SUNRISE RESTAURANTS,JP Nagar,North Indian,"North Indian, Chinese, Biryani",500,2.7,39,Casual Dining,False,9.1
+The Humming Tree,Indiranagar,Fast Food,"Fast Food, European",1400,4.0,2418,Lounge,False,7.7
+Mojo Pizza - 2X Toppings,New BEL Road,Pizza,Pizza,600,4.2,50,"Takeaway, Delivery",True,6.6
+Kudil Kerala Kitchen,Marathahalli,Kerala,Kerala,300,3.8,47,Quick Bites,False,8.6
+Lakeview Milkbar,Indiranagar,Desserts,"Desserts, Cafe, Bakery",500,2.9,539,"Dessert Parlor, Cafe",False,5.3
+Silbatti,HSR,North Indian,North Indian,750,4.0,1551,Casual Dining,False,2.1
+Cake Dilim,Kaggadasapura,Bakery,"Bakery, Fast Food, Desserts",400,3.3,7,"Bakery, Quick Bites",True,4.4
+Ovenstory Pizza,Old Airport Road,Pizza,Pizza,750,4.0,106,Delivery,True,0.7
+Reddy Restaurant,Electronic City,South Indian,South Indian,300,3.2,6,Quick Bites,True,7.2
+The Lobby Lounge - The Ritz-Carlton,Residency Road,Beverages,Beverages,2000,4.1,28,Casual Dining,True,10.5
+Bake and Juice,BTM,Fast Food,"Fast Food, Beverages",400,3.5,15,Quick Bites,True,4.4
+Pizza Stop,Domlur,Pizza,"Pizza, Italian",600,3.2,166,Quick Bites,True,4.7
+Spice,Electronic City,Andhra,"Andhra, Chinese, North Indian",1500,3.3,4,"Casual Dining, Bar",True,2.8
+Amrutha Sweets,Ejipura,Street Food,"Street Food, Mithai",200,3.5,13,Quick Bites,True,3.3
+Malties - Radisson Blu,Marathahalli,Continental,"Continental, Fast Food",4500,4.3,53,Lounge,False,6.7
+Haagen Dazs,Koramangala 7th Block,Ice Cream,"Ice Cream, Desserts",800,3.9,77,Dessert Parlor,True,4.4
+NTR Cafe,Kammanahalli,Chinese,"Chinese, Fast Food",100,2.9,4,Quick Bites,True,7.2
+Krutunga,HSR,Andhra,"Andhra, Biryani",500,3.6,289,Casual Dining,False,3.7
+Lassi Shop,Bellandur,Beverages,"Beverages, Ice Cream, Fast Food",300,3.9,152,Beverage Shop,True,4.0
+Shiv Shankar Chaats,Frazer Town,Street Food,Street Food,150,3.7,19,Quick Bites,True,0.6
+Chai Kraft,Jayanagar,Beverages,"Beverages, Tea",100,4.1,30,Beverage Shop,True,9.7
+Andal Mess,Domlur,Biryani,"Biryani, South Indian, North Indian",300,3.1,22,Mess,False,1.4
+Srinidhi Sagar,Old Airport Road,South Indian,"South Indian, North Indian, Chinese",40,3.9,160,Quick Bites,True,2.9
+Andhra Vilaas,Sarjapur Road,Andhra,"Andhra, North Indian, Biryani",350,3.7,52,Quick Bites,False,9.9
+UP Style North Indian Food,Jayanagar,North Indian,North Indian,100,3.6,46,"Takeaway, Delivery",True,3.3
+Foodizo,Banashankari,Desserts,"Desserts, Fast Food, Continental",300,3.6,24,Quick Bites,True,0.7
+Vijayalakshmi Veg,Nagawara,South Indian,South Indian,200,3.9,28,Quick Bites,True,5.0
+The Breakfeast,HSR,Continental,"Continental, North Indian, South Indian",200,3.4,10,"Takeaway, Delivery",True,5.3
+Cochin Connection,Koramangala 6th Block,Kerala,"Kerala, South Indian",500,3.6,41,Food Court,True,1.0
+Just Bake,Hennur,Bakery,"Bakery, Desserts",400,2.9,19,Bakery,True,7.0
+Hotel Janatha,Wilson Garden,South Indian,South Indian,250,3.9,31,Quick Bites,True,1.4
+Rawal Jalebi,Commercial Street,Desserts,Desserts,100,3.5,10,Dessert Parlor,True,11.0
+Bangarpet Chat Express,Basavanagudi,Street Food,"Street Food, Fast Food",100,3.3,6,Quick Bites,True,8.8
+Thrupthi Restaurant,Bannerghatta Road,Kerala,Kerala,150,3.4,15,Quick Bites,True,5.3
+Cuppa,JP Nagar,Cafe,"Cafe, Fast Food",550,3.4,48,Cafe,True,11.4
+Abhiruchi Hotel,BTM,Andhra,"Andhra, Biryani, Chinese, North Indian, Seafood, South Indian",600,3.5,735,Casual Dining,False,1.1
+Sharaab Factory,Bellandur,Biryani,"Biryani, North Indian",1500,3.9,392,Bar,False,9.9
+Drava,Koramangala 5th Block,Pizza,"Pizza, Continental, North Indian, Asian",1500,4.4,110,Lounge,True,6.3
+Bombay Kulfis,HSR,Ice Cream,Ice Cream,200,3.8,41,Dessert Parlor,True,1.9
+Ganesh Restaurant,Koramangala 5th Block,Chinese,"Chinese, Street Food",300,3.7,51,Quick Bites,True,6.9
+Rock Stone Ice Cream Factory,BTM,Ice Cream,Ice Cream,230,4.0,128,Dessert Parlor,True,7.5
+Fabelle Chocolate Boutique - ITC Gardenia,Richmond Road,Desserts,"Desserts, Ice Cream, Beverages",1250,4.5,232,Dessert Parlor,True,9.5
