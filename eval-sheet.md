@@ -1,0 +1,23 @@
+# Eval Sheet — AI Search Query Parsing
+
+**Pass criteria:** every explicit constraint (cuisine/price/rating/veg) extracted correctly, AND ambiguous terms honestly flagged in `unmapped_terms` rather than dropped or guessed.
+
+| # | Query | Expected Filters | Result | Pass/Fail | Notes |
+|---|---|---|---|---|---|
+| 1 | biryani under 300, rating 4+ | cuisine=biryani, max_price=300, min_rating=4.0 | Exact match | PASS | Clean baseline case |
+| 2 | something light and cheap nearby | vague — tests fallback | sort_by=price, unmapped=[light, nearby] | PASS | Debatable: "cheap" → sort not price cap. Documented design choice, not a bug |
+| 3 | veg thali, top rated | veg=true, cuisine=thali, sort=rating_desc | Exact match | PASS | Clean |
+| 4 | biryni under 2 hundread (typo) | tests robustness to spelling errors | cuisine=Biryani, max_price=200 | PASS | Corrected two separate typos in one query |
+| 5 | pizza (single word) | cuisine=pizza only | Exact match | PASS | Minimal-input handling works |
+| 6 | family friendly place for chinese food | cuisine=Chinese, social term unmapped | cuisine=Chinese, unmapped=[family friendly] | PASS | Transparency layer correctly flags subjective term |
+| 7 | spicy andhra food, rating above 3.5, not too expensive | cuisine=Andhra, min_rating=3.5, 2 unmapped terms | Exact match | PASS | "not too expensive" reasonably left unmapped rather than guessing a number |
+| 8 | asdkjaskdj (gibberish) | tests graceful failure | empty cuisine, all zeros, unmapped=[asdkjaskdj] | PASS | No crash, degrades cleanly |
+| 9 | biryani under 600 | cuisine=biryani, max_price=600 | 9 correct matches returned | PASS | Confirmed cuisine matches via all_cuisines field too, not just primary cuisine |
+| 10 | family friendly biryani under 600 | cuisine=biryani, max_price=600, 1 unmapped term | Exact match | PASS | Full pipeline: parse → filter → transparency UI all correct |
+| 11 | chinese or pizza, whichever is cheaper | Should match Chinese OR Pizza places, sorted by price | cuisine="Chinese, Pizza" (comma-joined string), 0 results returned | FAIL | Real bug: schema only supports single cuisine, no OR logic. Gemini understood intent correctly but had no way to express it. Root cause is schema design, not the AI. Fix candidate: change cuisine to accept an array, and update filter logic to match if ANY cuisine in the array matches |
+| 12 | not biryani, something else | Should exclude biryani, or gracefully decline. In practice: no negation logic exists in schema | cuisine="", all filters empty, unmapped=[not biryani, something else] | FAIL (soft) | AI honestly declined to guess at negation rather than hallucinating an exclude filter — good. But empty filters mean "no constraints applied," so all 90 restaurants return, including biryani places, directly contradicting the user's intent. System-level failure even though AI-layer behavior was appropriately cautious. Fix candidate: detect negation patterns ("not X", "no X") and either support an exclude filter, or show a message like "we don't support exclusions yet" instead of returning everything |
+| 13 | biryani under 300, rating 4+, near me | cuisine=Biryani, max_price=300, min_rating=4.0, distance-related term unmapped | Exact match on all explicit filters, unmapped=[near me] | PASS | This is the flagship example query from the project brief itself. Confirms the known distance-schema gap directly — "near me" is honestly flagged rather than ignored, but the system still can't act on it since distance_km isn't in the schema |
+| 14 | cheap ice cream under 150 | cuisine=ice cream, max_price=150 | Exact match, sort_by=price | PASS | Unlike query #2 ("something light and cheap"), here an explicit number ("under 150") was present alongside "cheap" — correctly captured as max_price this time, with "cheap" only affecting sort. Confirms "cheap" alone → sort, but "cheap" + explicit number → price cap. Consistent, defensible behavior |
+| 15 | kerala food, veg, under 500, best rated | cuisine=Kerala, max_price=500, veg_only=true, sort_by=rating | Exact match | PASS | Correctly distinguished "best rated" (a sort request) from an explicit rating threshold like "4+" (query #1). Multi-constraint query, zero unmapped terms |
+
+**Known gap surfaced during testing:** "nearby"/"near me" always lands in `unmapped_terms` because `distance_km` isn't part of the filter schema at all — even though the original project brief's example query ("biryani under ₹300, rating 4+, near me") includes distance. This is a real, deliberate v1 scoping decision worth naming explicitly in the README rather than hiding.
