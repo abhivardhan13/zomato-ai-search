@@ -2,6 +2,8 @@ import express from 'express'
 import cors from 'cors'
 import dotenv from 'dotenv'
 import { GoogleGenAI } from '@google/genai'
+import { loadDataset } from './data.js'
+import { filterRestaurants } from './filterRestaurants.js'
 
 dotenv.config({ quiet: true })
 
@@ -10,6 +12,11 @@ app.use(cors())
 app.use(express.json())
 
 const ai = new GoogleGenAI({ apiKey: process.env.GEMINI_API_KEY })
+let restaurants = []
+loadDataset().then((data) => {
+  restaurants = data
+  console.log(`Loaded ${restaurants.length} restaurants`)
+})
 
 // The exact shape we want back from every query, no matter how messy the input is
 const filterSchema = {
@@ -47,6 +54,29 @@ app.post('/api/parse-query', async (req, res) => {
   } catch (err) {
     console.error(err)
     res.status(500).json({ error: 'Failed to parse query' })
+  }
+})
+
+app.post('/api/search', async (req, res) => {
+  try {
+    const { query } = req.body
+
+    const response = await ai.models.generateContent({
+      model: 'gemini-3.6-flash',
+      contents: `Extract structured search filters from this food delivery search query: "${query}"`,
+      config: {
+        responseMimeType: 'application/json',
+        responseSchema: filterSchema
+      }
+    })
+
+    const filters = JSON.parse(response.text)
+    const results = filterRestaurants(restaurants, filters)
+
+    res.json({ filters, results })
+  } catch (err) {
+    console.error(err)
+    res.status(500).json({ error: 'Search failed' })
   }
 })
 

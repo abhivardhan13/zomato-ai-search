@@ -1,17 +1,32 @@
 import { useState } from 'react'
 import './App.css'
 
-// Sample data for now - we'll connect this to the real dataset once the backend exists
-const sampleRestaurants = [
-  { name: 'Bawarchi Biryani', cuisine: 'Biryani', price: 350, rating: 3.4, locality: 'Koramangala 6th Block' },
-  { name: 'Fort Kochi', cuisine: 'Kerala', price: 1800, rating: 4.1, locality: 'MG Road' },
-  { name: "Domino's Pizza", cuisine: 'Pizza', price: 400, rating: 3.9, locality: 'Rajajinagar' },
-  { name: 'Silbatti', cuisine: 'North Indian', price: 750, rating: 4.0, locality: 'HSR' },
-  { name: 'WOW! Momo', cuisine: 'Chinese', price: 400, rating: 3.5, locality: 'Marathahalli' },
-]
-
 function App() {
   const [query, setQuery] = useState('')
+  const [results, setResults] = useState([])
+  const [loading, setLoading] = useState(false)
+
+  const handleSearch = async () => {
+    if (!query.trim()) return
+    setLoading(true)
+    try {
+      const res = await fetch('http://localhost:3001/api/search', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ query })
+      })
+      const data = await res.json()
+      setResults(data.results)
+    } catch (err) {
+      console.error(err)
+    } finally {
+      setLoading(false)
+    }
+  }
+
+  const handleKeyDown = (e) => {
+    if (e.key === 'Enter') handleSearch()
+  }
 
   return (
     <div className="app">
@@ -22,15 +37,18 @@ function App() {
         placeholder="Try: biryani under 300, rating 4+"
         value={query}
         onChange={(e) => setQuery(e.target.value)}
+        onKeyDown={handleKeyDown}
         className="search-bar"
       />
 
+      {loading && <p>Searching...</p>}
+
       <div className="results">
-        {sampleRestaurants.map((r, i) => (
+        {results.map((r, i) => (
           <div className="card" key={i}>
             <h3>{r.name}</h3>
             <p>{r.cuisine} · {r.locality}</p>
-            <p>₹{r.price} for two · ⭐ {r.rating}</p>
+            <p>₹{r.price_for_two} for two · ⭐ {r.rating}</p>
           </div>
         ))}
       </div>
