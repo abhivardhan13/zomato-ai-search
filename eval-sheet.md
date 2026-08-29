@@ -21,3 +21,8 @@
 | 15 | kerala food, veg, under 500, best rated | cuisine=Kerala, max_price=500, veg_only=true, sort_by=rating | Exact match | PASS | Correctly distinguished "best rated" (a sort request) from an explicit rating threshold like "4+" (query #1). Multi-constraint query, zero unmapped terms |
 
 **Known gap surfaced during testing:** "nearby"/"near me" always lands in `unmapped_terms` because `distance_km` isn't part of the filter schema at all — even though the original project brief's example query ("biryani under ₹300, rating 4+, near me") includes distance. This is a real, deliberate v1 scoping decision worth naming explicitly in the README rather than hiding.
+
+**Fixes implemented (Day 8):**
+- #11 (OR-logic bug): Changed schema field `cuisine` (string) → `cuisines` (array). Filter logic now matches if ANY cuisine in the array is found. Re-tested: "chinese or pizza" now returns 23 correct results instead of 0.
+- #12 (negation bug): Added a guardrail — if all filters come back empty/zero AND unmapped_terms is non-empty, return zero results with an explicit "couldn't confidently interpret this" notice, instead of silently applying no filters (which returned all 90 restaurants). Re-tested: now correctly shows 0 results with honest notice.
+- #1 / zero-results case: Added a filter-relaxation guardrail — when strict filters return 0 matches, progressively relax rating → price → cuisine (one at a time) and return the first non-empty result set, with a notice telling the user which filter was relaxed. Re-tested "biryani under 300, rating 4+": now shows 2 relaxed-match results with a clear notice, instead of a blank screen.

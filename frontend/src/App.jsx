@@ -5,6 +5,7 @@ function App() {
   const [query, setQuery] = useState('')
   const [results, setResults] = useState([])
     const [filters, setFilters] = useState(null)
+      const [notice, setNotice] = useState(null)
   const [loading, setLoading] = useState(false)
 
   const handleSearch = async () => {
@@ -19,6 +20,7 @@ function App() {
       const data = await res.json()
       setResults(data.results)
       setFilters(data.filters)
+      setNotice(data.notice || null)
     } catch (err) {
       console.error(err)
     } finally {
@@ -47,7 +49,7 @@ function App() {
             {filters && !loading && (
         <div className="filter-breakdown">
           <strong>Understood as:</strong>{' '}
-          {filters.cuisine && <span>Cuisine: {filters.cuisine} </span>}
+          {filters.cuisines && filters.cuisines.length > 0 && <span>Cuisine: {filters.cuisines.join(' or ')} </span>}
           {filters.max_price > 0 && <span>| Max Price: ₹{filters.max_price} </span>}
           {filters.min_rating > 0 && <span>| Min Rating: {filters.min_rating} </span>}
           {filters.veg_only && <span>| Veg only </span>}
@@ -61,6 +63,7 @@ function App() {
       )}
 
       <div className="results">
+              {notice && <div className="notice">{notice}</div>}
         {results.map((r, i) => (
           <div className="card" key={i}>
             <h3>{r.name}</h3>
