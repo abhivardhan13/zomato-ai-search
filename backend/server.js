@@ -92,12 +92,12 @@ app.post('/api/search', async (req, res) => {
       })
     }
 
-    const { results, relaxed, droppedFilter } = filterRestaurants(restaurants, filters)
+    const { results, relaxed, droppedFilters } = filterRestaurants(restaurants, filters)
 
     let notice = null
     if (relaxed && results.length > 0) {
-      const label = droppedFilter === 'cuisines' ? 'cuisine' : droppedFilter
-      notice = `No exact matches, so we relaxed the ${label} filter to show the closest results.`
+      const labels = droppedFilters.map(f => f === 'cuisines' ? 'cuisine' : f === 'max_price' ? 'price' : f)
+      notice = `No exact matches, so we relaxed the ${labels.join(' and ')} filter${labels.length > 1 ? 's' : ''} to show the closest results.`
     } else if (relaxed && results.length === 0) {
       notice = 'No matches found even after relaxing filters.'
     }

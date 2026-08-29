@@ -25,24 +25,32 @@ function applyFilters(data, filters) {
 export function filterRestaurants(data, filters) {
   const strictResults = applyFilters(data, filters)
   if (strictResults.length > 0) {
-    return { results: strictResults, relaxed: false, droppedFilter: null }
+    return { results: strictResults, relaxed: false, droppedFilters: [] }
   }
 
-  // Guardrail: zero exact matches - relax the strictest filter first, one at a time,
-  // instead of showing a blank screen (this is Step 5 of the architecture plan)
+  // Guardrail: try dropping ONE filter at a time, independently, each starting
+  // fresh from the original filters - never combine relaxations silently.
+  // This guarantees the notice we show is always fully honest about what changed.
   const relaxOrder = ['min_rating', 'max_price', 'cuisines']
-  let currentFilters = { ...filters }
 
   for (const key of relaxOrder) {
-    currentFilters = key === 'cuisines'
-      ? { ...currentFilters, cuisines: [] }
-      : { ...currentFilters, [key]: 0 }
+    const testFilters = { ...filters }
+    if (key === 'cuisines') testFilters.cuisines = []
+    else testFilters[key] = 0
 
-    const relaxedResults = applyFilters(data, currentFilters)
+    const relaxedResults = applyFilters(data, testFilters)
     if (relaxedResults.length > 0) {
-      return { results: relaxedResults, relaxed: true, droppedFilter: key }
+      return { results: relaxedResults, relaxed: true, droppedFilters: [key] }
     }
   }
 
-  return { results: [], relaxed: true, droppedFilter: 'all' }
+  // Last resort: no single relaxation worked. Try dropping all of them together,
+  // but be explicit that MULTIPLE filters were dropped, not just one.
+  const allRelaxed = { ...filters, cuisines: [], max_price: 0, min_rating: 0 }
+  const lastResortResults = applyFilters(data, allRelaxed)
+  if (lastResortResults.length > 0) {
+    return { results: lastResortResults, relaxed: true, droppedFilters: ['cuisines', 'max_price', 'min_rating'] }
+  }
+
+  return { results: [], relaxed: true, droppedFilters: ['all'] }
 }
