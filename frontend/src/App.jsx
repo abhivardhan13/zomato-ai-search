@@ -4,6 +4,7 @@ import './App.css'
 function App() {
   const [query, setQuery] = useState('')
   const [results, setResults] = useState([])
+    const [filters, setFilters] = useState(null)
   const [loading, setLoading] = useState(false)
 
   const handleSearch = async () => {
@@ -17,6 +18,7 @@ function App() {
       })
       const data = await res.json()
       setResults(data.results)
+      setFilters(data.filters)
     } catch (err) {
       console.error(err)
     } finally {
@@ -42,6 +44,21 @@ function App() {
       />
 
       {loading && <p>Searching...</p>}
+            {filters && !loading && (
+        <div className="filter-breakdown">
+          <strong>Understood as:</strong>{' '}
+          {filters.cuisine && <span>Cuisine: {filters.cuisine} </span>}
+          {filters.max_price > 0 && <span>| Max Price: ₹{filters.max_price} </span>}
+          {filters.min_rating > 0 && <span>| Min Rating: {filters.min_rating} </span>}
+          {filters.veg_only && <span>| Veg only </span>}
+          {filters.sort_by !== 'none' && <span>| Sorted by: {filters.sort_by} </span>}
+          {filters.unmapped_terms.length > 0 && (
+            <div className="unmapped">
+              Couldn't interpret: {filters.unmapped_terms.join(', ')}
+            </div>
+          )}
+        </div>
+      )}
 
       <div className="results">
         {results.map((r, i) => (
