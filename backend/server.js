@@ -108,7 +108,10 @@ app.post('/api/search', async (req, res) => {
     res.status(500).json({ error: 'Search failed' })
   }
 })
-
+app.get('/api/nearby', (req, res) => {
+  const sample = restaurants.slice(0, 5)
+  res.json({ results: sample })
+})
 app.get('/', (req, res) => {
   res.send('Backend is running')
 })
